@@ -23,7 +23,7 @@ export function nextUpgrade(state: FarmState, habUpgradeCost: number): FarmState
     const newEarningRate = state.earningRate * boostDifferential
 
     const upgradeCostTime = u.getNextUpgradeCost() / state.earningRate
-    const newTotalTime = upgradeCostTime + habUpgradeCost / newEarningRate
+    const newTotalTime = upgradeCostTime + state.elapsedTime + habUpgradeCost / newEarningRate
     if (newTotalTime < state.totalTime) {
       const newPurchase = {
         name: u.name,
