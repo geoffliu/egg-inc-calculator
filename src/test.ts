@@ -1,7 +1,7 @@
 import { computeTrophyAttemptDetails } from './index'
 
 const state = computeTrophyAttemptDetails({
-  earningBonus: 2.1,
+  earningBonus: 2.241,
   habBoost: 0,
   eggValueBoost: 0,
 })
