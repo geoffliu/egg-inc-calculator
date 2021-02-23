@@ -1,27 +1,21 @@
 
-/*
+export type UpgradeVector = [number, number][]
 
-# (decillions, earning boost)
-GRAVITON_COATING = [(0, 2), (0, 4), (4, 8), (1.7e3, 16), (434.3e3, 32), (77.1e6, 64), (16.96e9, 128)]
-CRYSTALLINE_SHELLING = [(0, 5), (1.47 * 20, 10), (268.1 * 20, 15), (3.4e3 * 10, 17.5), (39.3e3 * 10, 20), (103e3 * 4, 21), \
-        (266e3 * 4, 22), (676.7e3 * 4, 23), (1.7e6 * 4, 24), (4.2e6 * 4, 25), (8.2e6 * 4, 26)]
-TELEPATHIC_WILL = [(2.48e6 * 20, 5), (173.3e6 * 10, 7.5), (14.45e9 * 10, 10), (1.21e12 * 10, 12.5), (4.56e12 * 4, 13.5)]
-ATOMIC_PURIFICATION = [(6.04e12 * 5, 1.5), (167.15e12 * 5, 2), (4.6e15 * 5, 2.5), (128.49e15 * 5, 3), (3.56e18 * 5, 3.5), \
-        (98.4e18 * 5, 4), (2.7e21 * 5, 4.5), (75.66e21 * 5, 5)]
-MULTIVERSAL_LAYERING = [(111.96e15, 10), (443.54e21, 100), (1.37e30, 1000)]
-TIMELINE_DIVERSION = [(7.6e12 * 10, 1.2), (4.89e15 * 10, 1.4), (3.153e18 * 10, 1.6), (2.03e21 * 10, 1.8), (50.27e21 * 5, 1.9)]
-EGGSISTOR_MINIATURIZATION = [(241e15 * 10, 1.5), (6.44e18 * 10, 2), (173e18 * 10, 2.5), (4.6e21 * 10, 3), (124e21 * 10, 3.5)]
+export const GRAVITON_COATING: UpgradeVector = [[0, 2], [0, 4], [4, 8], [1.7e3, 16], [434.3e3, 32], [77.1e6, 64], [16.96e9, 128]]
 
-ALL_UPGRADES = [GRAVITON_COATING, CRYSTALLINE_SHELLING, TELEPATHIC_WILL, ATOMIC_PURIFICATION, \
-        MULTIVERSAL_LAYERING, TIMELINE_DIVERSION, EGGSISTOR_MINIATURIZATION]
+export const CRYSTALLINE_SHELLING: UpgradeVector = [[0, 5], [1.47 * 20, 10], [268.1 * 20, 15], [3.4e3 * 10, 17.5], [39.3e3 * 10, 20], [103e3 * 4, 21],
+        [266e3 * 4, 22], [676.7e3 * 4, 23], [1.7e6 * 4, 24], [4.2e6 * 4, 25], [8.2e6 * 4, 26]]
 
-UPGRADE_NAMES = ['GRAVITON_COATING', 'CRYSTALLINE_SHELLING', 'TELEPATHIC_WILL', 'ATOMIC_PURIFICATION', \
-        'MULTIVERSAL_LAYERING', 'TIMELINE_DIVERSION', 'EGGSISTOR_MINIATURIZATION']
+export const TELEPATHIC_WILL: UpgradeVector = [[2.48e6 * 20, 5], [173.3e6 * 10, 7.5], [14.45e9 * 10, 10], [1.21e12 * 10, 12.5], [4.56e12 * 4, 13.5]]
 
-for upgrade in ALL_UPGRADES:
-    upgrade.insert(0, (0, 1))
+export const ATOMIC_PURIFICATION: UpgradeVector = [[6.04e12 * 5, 1.5], [167.15e12 * 5, 2], [4.6e15 * 5, 2.5], [128.49e15 * 5, 3], [3.56e18 * 5, 3.5],
+        [98.4e18 * 5, 4], [2.7e21 * 5, 4.5], [75.66e21 * 5, 5]]
 
-*/
+export const MULTIVERSAL_LAYERING: UpgradeVector = [[111.96e15, 10], [443.54e21, 100], [1.37e30, 1000]]
+
+export const TIMELINE_DIVERSION: UpgradeVector = [[7.6e12 * 10, 1.2], [4.89e15 * 10, 1.4], [3.153e18 * 10, 1.6], [2.03e21 * 10, 1.8], [50.27e21 * 5, 1.9]]
+
+export const EGGSISTOR_MINIATURIZATION: UpgradeVector = [[241e15 * 10, 1.5], [6.44e18 * 10, 2], [173e18 * 10, 2.5], [4.6e21 * 10, 3], [124e21 * 10, 3.5]]
 
 export const WORMHOLE_DAMPENING_COSTS = [
     4.69e15, 15.83e15, 53.26e15, 178.84e15, 599.74e15, 2.01e18, 6.77e18,

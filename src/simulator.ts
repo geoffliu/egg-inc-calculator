@@ -8,6 +8,7 @@ interface PurchasedUpgrade {
 }
 
 export interface FarmState {
+  totalTime: number
   elapsedTime: number
   earningRate: number
 
@@ -23,7 +24,7 @@ export function nextUpgrade(state: FarmState, habUpgradeCost: number): FarmState
 
     const upgradeCostTime = u.getNextUpgradeCost() / state.earningRate
     const newTotalTime = upgradeCostTime + habUpgradeCost / newEarningRate
-    if (newTotalTime < habUpgradeCost / state.earningRate) {
+    if (newTotalTime < state.totalTime) {
       const newPurchase = {
         name: u.name,
         boost: u.getNextBoost(),
@@ -31,6 +32,7 @@ export function nextUpgrade(state: FarmState, habUpgradeCost: number): FarmState
       u.upgrade()
 
       return {
+        totalTime: newTotalTime,
         elapsedTime: state.elapsedTime + upgradeCostTime,
         earningRate: newEarningRate,
         upgrades: state.upgrades.filter(u => !u.isExhausted()),

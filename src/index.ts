@@ -14,7 +14,7 @@ const BASE_HAB = 756
 const TARGET_HAB = 1000
 
 function getTotalHabUpgradeCost(habBoost: number) {
-  const requiredRatio = TARGET_HAB / BASE_HAB / (habBoost / 100 + 1)
+  const requiredRatio = TARGET_HAB / BASE_HAB / fromPercent(habBoost)
   if (requiredRatio < 1) {
     return 0
   }
@@ -34,15 +34,16 @@ interface BoostParameters {
   eggValueBoost: number
 }
 
-export function computeTrophyAttemptDetails(params: BoostParameters) {
+export function computeTrophyAttemptDetails(params: BoostParameters): FarmState {
   const { earningBonus, habBoost, eggValueBoost } = params
   const habUpgradeCost = getTotalHabUpgradeCost(habBoost)
 
   const initialEarning = SAMPLE_EARNING  / SAMPLE_EB * earningBonus
     * BASE_HAB * 1e7 / 50000
-    * eggValueBoost
+    * fromPercent(eggValueBoost)
 
   let currState: FarmState = {
+    totalTime: Number.MAX_VALUE,
     elapsedTime: 0,
     earningRate: initialEarning,
 
@@ -52,11 +53,15 @@ export function computeTrophyAttemptDetails(params: BoostParameters) {
 
   while (true) {
     const nextState = nextUpgrade(currState, habUpgradeCost)
-    if (!nextUpgrade) {
+    if (!nextState) {
       return currState
     }
     currState = nextState
   }
+}
+
+function fromPercent(p: number) {
+  return 1 + p / 100
 }
 
 export { CAVEATS } from './caveats'
