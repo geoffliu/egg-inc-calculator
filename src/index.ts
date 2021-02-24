@@ -43,8 +43,8 @@ export function computeTrophyAttemptDetails(params: BoostParameters): FarmState 
     * fromPercent(eggValueBoost)
 
   let currState: FarmState = {
-    totalTime: habUpgradeCost / initialEarning,
-    elapsedTime: 0,
+    habUpgradeTime: habUpgradeCost / initialEarning,
+    otherResearchTime: 0,
     earningRate: initialEarning,
 
     upgrades: getAllUpgrades(),

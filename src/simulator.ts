@@ -5,11 +5,12 @@ import {Upgrade} from './upgrade'
 interface PurchasedUpgrade {
   name: string
   boost: number
+  waitingTime: number
 }
 
 export interface FarmState {
-  totalTime: number
-  elapsedTime: number
+  habUpgradeTime: number
+  otherResearchTime: number
   earningRate: number
 
   upgrades: Upgrade[]
@@ -23,17 +24,19 @@ export function nextUpgrade(state: FarmState, habUpgradeCost: number): FarmState
     const newEarningRate = state.earningRate * boostDifferential
 
     const upgradeCostTime = u.getNextUpgradeCost() / state.earningRate
-    const newTotalTime = upgradeCostTime + state.elapsedTime + habUpgradeCost / newEarningRate
-    if (newTotalTime < state.totalTime) {
+    const newHabUpgradeTime = habUpgradeCost / newEarningRate
+    const newTotalTime = upgradeCostTime + state.otherResearchTime + newHabUpgradeTime
+    if (newTotalTime < state.habUpgradeTime + state.otherResearchTime) {
       const newPurchase = {
         name: u.name,
         boost: u.getNextBoost(),
+        waitingTime: upgradeCostTime,
       }
       u.upgrade()
 
       return {
-        totalTime: newTotalTime,
-        elapsedTime: state.elapsedTime + upgradeCostTime,
+        habUpgradeTime: newHabUpgradeTime,
+        otherResearchTime: state.otherResearchTime + upgradeCostTime,
         earningRate: newEarningRate,
         upgrades: state.upgrades.filter(u => !u.isExhausted()),
         upgradeSequence: state.upgradeSequence.concat(newPurchase),
