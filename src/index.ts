@@ -4,7 +4,7 @@ import {WORMHOLE_DAMPENING_COSTS} from './upgrade_data'
 import {nextUpgrade, FarmState} from './simulator'
 import {getAllUpgrades} from './upgrade'
 
-// At 1.499 o% of EB, with 50k chickens, and all upgrade up to tier 10
+// At 1.499o% of EB, with 50k chickens, and all upgrade up to tier 10
 // completed, earning rate is 0.3649 d/s
 const SAMPLE_EB = 1.499
 const SAMPLE_EARNING = 0.3649
@@ -24,7 +24,7 @@ function getTotalHabUpgradeCost(habBoost: number) {
 }
 
 interface BoostParameters {
-  // In o%
+  // In S%
   earningBonus: number
 
   // Hab capacity boost percent
@@ -38,7 +38,7 @@ export function computeTrophyAttemptDetails(params: BoostParameters): FarmState 
   const { earningBonus, habBoost, eggValueBoost } = params
   const habUpgradeCost = getTotalHabUpgradeCost(habBoost)
 
-  const initialEarning = SAMPLE_EARNING  / SAMPLE_EB * earningBonus
+  const initialEarning = SAMPLE_EARNING  / SAMPLE_EB * earningBonus / 1000
     * BASE_HAB * 1e7 / 50000
     * fromPercent(eggValueBoost)
 
